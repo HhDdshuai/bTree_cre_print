@@ -7,20 +7,22 @@ typedef struct b_node{
     elemType data;
     struct b_node *lchild,*rchild;
 }b_node,*b_tree;
-//°´Êı×éË³Ğò´´½¨¶ş²æÊ÷
-void createTree(b_tree *T,elemType a[],int len,int index){ //ĞŞ¸ÄÒ»¸öÖ¸Õë ÒªÓÃ¶ş¼¶Ö¸Õë
+//æŒ‰æ•°ç»„é¡ºåºåˆ›å»ºäºŒå‰æ ‘
+void createTree(b_tree *T,elemType a[],int len,int index){ //ä¿®æ”¹ä¸€ä¸ªæŒ‡é’ˆ è¦ç”¨äºŒçº§æŒ‡é’ˆ
     if(index >= len)
         return;
     *T = (b_node *)malloc(sizeof(b_node));
     if(a[index] == -1)
         *T = NULL;
-    (*T)->data = a[index];
-    (*T)->lchild = NULL;
-    (*T)->rchild = NULL;
-    createTree(&((*T)->lchild),a,len,2 * index);   //´ÓÊı×éa[0]¿ªÊ¼Îª 2*index+1
-    createTree(&((*T)->rchild),a,len,2 * index + 1);                //2*index+2
+    else{
+        (*T)->data = a[index];
+        (*T)->lchild = NULL;
+        (*T)->rchild = NULL;
+        createTree(&((*T)->lchild),a,len,2 * index);   //ä»æ•°ç»„a[0]å¼€å§‹ä¸º 2*index+1
+        createTree(&((*T)->rchild),a,len,2 * index + 1);                //2*index+2
+    }
 }
-//ÏÈĞòµİ¹é±éÀú¶ş²æÊ÷
+//å…ˆåºé€’å½’éå†äºŒå‰æ ‘
 void preOrder(b_tree T){
     if(T != NULL){
         printf("%d ",T->data);
